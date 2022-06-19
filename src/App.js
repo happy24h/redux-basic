@@ -1,35 +1,30 @@
-// src/App.js
-
-//Import kết nối tới react-redux
-import { connect } from 'react-redux'
-//Import action dùng để dispatch
-import {actionIncrement , actionDecrement} from "./actions/index";
-
-function App( props ) {
-  
+//file: src/App.js
+import React from "react";
+import "./App.css";
+//Kết nối vơi redux
+import { connect } from "react-redux";
+import ShowNote from './components/ShowNote'
+import AddNote from './components/AddNote'
+function App(props) {
   return (
-    <div>
-      <h1>Counter {props.counter}</h1>
-      <button onClick={() => props.increment(5)}>Increment</button>
-      <button onClick={() => props.decrement(5)}>Decrement</button>
+    <div className="row" style={{ marginTop: "3%" }}>
+      <AddNote />
+      {props.note.map((note, index) => {
+          // Render ra lần lượt các ghi chú.
+          return <ShowNote noteData = {note} key={note.id}/>
+      })}
     </div>
   );
 }
 
-//Gán dispatch thành props
-const mapDispatchToProps = (dispatch) =>  {
+// Lấy state từ store bằng mapStateToProps
+// Lúc này state nhận được sẽ gán vào props
+const mapStateToProps = (state, ownProps) => {
+  // Gán state nhận về từ store 
+  // thành props có tên note (props.note)
   return {
-    increment: (number) => dispatch(actionIncrement(number)),
-    decrement: (number) => dispatch(actionDecrement(number))
-  }
-}
+    note: state.note,
+  };
+};
 
-//Gán giá trị của state thành props
-const mapStateToProps = (number) => {
-  return {
-    counter: number
-  }
-}
-
-//Export component với két nối redux.
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, null)(App);

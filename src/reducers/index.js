@@ -1,8 +1,7 @@
-import { combineReducers } from "redux";
-import counterReducers from "./counterReducer";
+//reducers/index.js
+import {combineReducers} from 'redux'
+import noteReducers from './noteReducer'
 
-const allReducers = combineReducers({
-  counterReducers
+export default combineReducers({
+    note: noteReducers
 })
-
-export default allReducers;
