@@ -7,6 +7,7 @@ import App from "./App";
 import allReducers from "./reducers";
 
 const store = createStore(allReducers);
+// sử dụng hàm createStore để tạo store chứa allReducers.
 
 ReactDOM.render(
   <Provider store={store}>
