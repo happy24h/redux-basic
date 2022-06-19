@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import {actionIncrement , actionDecrement} from "./actions/index";
 
 function App( props ) {
+  console.log("-----", props)
   
   return (
     <div>
@@ -25,9 +26,9 @@ const mapDispatchToProps = (dispatch) =>  {
 }
 
 //Gán giá trị của state thành props
-const mapStateToProps = (number) => {
+const mapStateToProps = (state) => {
   return {
-    counter: number
+    counter: state.counterReducer
   }
 }
 
